@@ -1,0 +1,80 @@
+<div class="container">
+  <h1>Mi primera aplicacion con ANgular</h1>
+  <h2>{{ welcome }}</h2>
+  <ul>
+    <li *ngFor="let task of tasks()">
+      {{ task }}
+    </li>
+  </ul>
+  <hr />
+  <h2>{{ "Hola ".repeat(4) }}</h2>
+  <p>la suma de 3 + 3 es {{ 3 + 3 }}</p>
+  <p>Hola soy {{ name() }} y mi tengo {{ age }} años</p>
+  <img [src]="person().avatar" alt="" />
+  <input tupe="number" [value]="person().age" />
+  <button [disabled]="disabled">Clik me</button>
+  <p>Person : {{ person().name }}</p>
+  <hr />
+  <button (click)="clickHandler()">Clik me 2</button><br />
+  <button (dblclick)="clickHandler()">doble Clik me 2</button>
+  <p>(change)</p>
+  <input tupe="number" [value]="person().age" (change)="changekHandler($event)"/>
+  <p>(keydown)</p>
+  <input tupe="text" [value]="person().name" (keydown)="keydownHandler($event)"/>
+  <p>(keydown SHIF + T)</p>
+  <input tupe="text" [value]="person().name" (keydown.shift.t)="clickHandler()"/>
+  <hr />
+  <ul>
+    <p>total: {{tasks().length}}</p>
+    <li *ngFor="let task of tasks(); index as i">
+      {{ i }} {{ task }}
+    </li>
+  </ul>
+  <h1>Signal</h1>
+  <input tupe="number" [value]="name()" (change)="changekHandler($event)"/>
+  <p>name : {{name()}}</p>
+  <hr/>
+  <div *ngIf="1 !== 1">
+    motrar div
+  </div>
+  <div *ngIf="name()=='naruto'">
+    motrar div dos
+  </div>
+  <input tupe="number" [value]="person().age" (change)="changeAge($event)"/>
+  <div *ngIf="person().name =='naruto' && person().age>18; else elseBlock">
+    soy nicolas y soy mayo de edad
+  </div>
+  <ng-template #elseBlock>
+    no soy naruto ni soy mayor
+  </ng-template>
+  <hr/>
+  <input tupe="text" [value]="person().name" (change)="changeName($event)"/>
+  <div [ngSwitch]="person().name">
+   <p *ngSwitchCase="'Oscar'">Y soy Oscar</p>
+   <p *ngSwitchCase="'Pedro'">Y soy Pedro</p>
+   <p *ngSwitchCase="'Julian'">Y soy Julian</p>
+   <p *ngSwitchCase="'Marcos'">Y soy Marcos</p>
+   <p *ngSwitchDefault>yo no soy nadie</p>
+  </div>
+  <hr/>
+  <input type="color"[formControl]="colorCtrl">
+  <p>color: {{colorCtrl.value}}</p>
+  <svg>
+    <g>
+      <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value"/>
+    </g>
+  </svg>
+
+  <hr/>
+  <input type="number" [formControl]="widthCtrl">
+  <span class="box" [style.width.px]="widthCtrl.value"></span>
+  <hr/>
+  <p>
+    <input type="text" [formControl]="nameCtrl" > <br />
+    <span class="message-error" [class.show]="nameCtrl.invalid && nameCtrl.touched">Nombre Incorrecto</span>
+  </p>
+  <p>
+    <input type="text" >
+   
+  </p>
+</div>
